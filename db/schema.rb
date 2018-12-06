@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181205152612) do
+ActiveRecord::Schema.define(version: 20181206150324) do
 
   create_table "grocery_lists", force: :cascade do |t|
     t.integer "user_id"
     t.integer "item_id"
     t.boolean "purchased?"
     t.string  "note"
-    t.string  "quantity"
+    t.integer "quantity"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
     t.float  "price"
-    t.string "store"
     t.string "brand"
   end
 

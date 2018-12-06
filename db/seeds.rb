@@ -4,12 +4,12 @@ User.create(name: "Tony", weekly_budget: 10.0)
 User.create(name: "V.Chan", weekly_budget: 300.0)
 
 
-1000.times do
- Item.create(name: Faker::Food.ingredient.downcase, price: (1..20).to_a.sample.to_f, store: ['Local Food Town', 'Trader Joes','Whole Foods'].sample, brand: 'Goya')
+500.times do
+ Item.create(name: Faker::Food.ingredient.downcase, price: (1..20).to_a.sample.to_f, brand: ["Amy's","Trader Joe's", "Whole Food's 365", "Campbell's"].sample)
 end
 
 10.times do
-  GroceryList.create(user_id: 1, item_id: rand(0..100), purchased?: false, quantity: "4", note: "Don't get the grossss one." )
-  GroceryList.create( user_id: 2, item_id: rand(0..100), purchased?: false, quantity: "some", note: "Get the cheapest one." )
-  GroceryList.create( user_id: 3, item_id: rand(0..100), purchased?: true, quantity: "a bajillion", note: "boop" )
+  GroceryList.create(user_id: 1, item_id: rand(0..100), purchased?: false, quantity: 1, note: "" )
+  GroceryList.create( user_id: 2, item_id: rand(0..100), purchased?: false, quantity: 1, note: "" )
+  GroceryList.create( user_id: 3, item_id: rand(0..100), purchased?: true, quantity: 1, note: "" )
 end

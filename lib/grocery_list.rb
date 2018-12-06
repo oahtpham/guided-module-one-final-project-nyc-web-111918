@@ -12,8 +12,12 @@ class GroceryList < ActiveRecord::Base
     item_id = Item.find_by(name: item_name).id
 
     #or_create_by(name: item_name, brand: "store brand").id
-    puts "How much do you need to purchase?"
-    item_quantity = gets.chomp
+    puts "How many do you need to purchase? Please only put a number and add other detailed under notes"
+    item_quantity = gets.chomp.to_i
+    
+      if item_quantity == 0
+        item_quantity = 1
+      end
     puts "Add a special note to this item:"
     item_note = gets.chomp
     new = GroceryList.create(user_id: user_id, item_id: item_id, quantity: item_quantity, note: item_note)

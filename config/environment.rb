@@ -32,9 +32,12 @@ def user_grocery_items(username)
   else
     puts "Here are your items in your grocery list: "
       u1.grocery_lists.each_with_index do |listed_item, i|
-        puts "#{i+1}. #{listed_item.item.brand}'s #{listed_item.item.name} (quantity: #{listed_item.quantity})"
+        # binding.pry
+        puts "
+        #{i+1}. #{listed_item.item.brand}'s #{listed_item.item.name} (quantity: #{listed_item.quantity}) | TOTAL: $#{format_float(listed_item.item.price * listed_item.quantity)}"
         if listed_item.note != ""
-        puts  "Note: #{listed_item.note} "
+        puts  "
+        NOTE: #{listed_item.note} "
         end
       end
     end
@@ -51,7 +54,7 @@ def budget(username)
   u1 = User.find_by(name: username)
   sum = 0
   u1.grocery_lists.each do |listed_item|
-    sum = sum + listed_item.item.price
+    sum = sum + (listed_item.item.price * listed_item.quantity)
   end
   if sum > u1.weekly_budget
     puts "Your grocery list total is $#{format_float(sum)}. You are over your budget by $#{format_float(sum - u1.weekly_budget)}.".upcase
@@ -95,7 +98,6 @@ def run(username, user_id)
     elsif user_response == 'delete'
       delete(user_id)
     elsif user_response == 'list'
-
       user_grocery_items(username)
     elsif user_response == 'budget'
       budget(username)
@@ -150,7 +152,7 @@ def add(user_id)
           if price == 0.0
             puts "Sorry you either put zero or we could not read. The price will be listed as 0.0, but it will probably cost more than that!"
           end #not valid price end
-          Item.create(name: item_name, store: "Not your local grocer", brand: "N/A", price: price)
+          Item.create(name: item_name, brand: "N/A", price: price)
           GroceryList.add_to_grocery_list(item_name, user_id)
           break # breaks loop if item is created
         else
@@ -222,4 +224,4 @@ end
 
 
 #
- #binding.pry
+ # binding.pry
