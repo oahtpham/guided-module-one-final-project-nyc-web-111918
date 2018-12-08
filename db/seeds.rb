@@ -5,7 +5,7 @@ User.create(name: "V.Chan", weekly_budget: 300.0)
 
 
 500.times do
- Item.create(name: Faker::Food.ingredient.downcase, price: (1..20).to_a.sample.to_f, brand: ["Amy's","Trader Joe's", "Whole Food's 365", "Campbell's"].sample)
+ Item.create(name: Faker::Food.ingredient.downcase, price: (1..20).to_a.sample.to_f, brand: ["Amy","Trader Joe", "Whole Food 365", "Campbell"].sample)
 end
 
 10.times do
